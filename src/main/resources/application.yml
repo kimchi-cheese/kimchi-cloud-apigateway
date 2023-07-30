@@ -1,17 +1,14 @@
-server:
-  port: 9000 
-
-eureka:
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka
-
-
 spring:
   application:
     name: kimchi-apigateway-service
+
+  profiles:
+    active:
+      - local
+
+    group:
+      local:
+        - site-local
 
   cloud:
     gateway:
@@ -19,9 +16,16 @@ spring:
         - id: kimchi-domain-app-service
           uri: lb://KIMCHI-DOMAIN-APP-SERVICE
           predicates:
-            - Path=/domain/**
+            - Path=/domain/**, /login/**, /oauth2/**
 
         - id: kimchi-ai-app-service
           uri: lb://KIMCHI-AI-APP-SERVICE
           predicates:
             - Path=/ai/**
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka

@@ -38,3 +38,7 @@ out/
 
 ### Apple ###
 .DS_Store
+
+
+### Spring Application ###
+src/main/resources/application-site-local.yml
