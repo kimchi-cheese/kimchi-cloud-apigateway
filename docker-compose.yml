@@ -1,0 +1,15 @@
+version: '3'
+services:
+  kimchi-cloud-apigateway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    networks:
+      - kimchi-network
+    ports:
+      - 8080:8080
+    
+networks:
+  kimchi-network:
+    external: true
+
